@@ -1,3 +1,45 @@
-<p>
-  to-do-list works!
-</p>
+<button id="add" mat-raised-button color="primary" (click)="addDialog()">Add todo</button>
+
+
+<div class="div-flex">
+  <mat-card *ngIf="this.tasks[0]; else noToDo">
+    <mat-card-title>Tasks todo</mat-card-title>
+    <mat-list>
+      <mat-list-item *ngFor="let task of tasks; let i = index">
+        <button mat-icon-button>
+          <mat-icon mat-list-icon color="accent" (click)="openBottomSheetEdit(task)">edit</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon mat-list-icon color="primary" (click)="markDone(i, task)">done_outline</mat-icon>
+        </button>
+        <h4 mat-line>{{task.task | titlecase}}</h4>
+        <p mat-line> {{task.dueDate | date}} </p>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+  <ng-template #noToDo>
+    <mat-card>
+      <mat-card-title>Unfinished Tasks Go Here</mat-card-title>
+    </mat-card>
+  </ng-template>
+  <mat-card *ngIf="completed[0]; else noCompleted">
+    <mat-card-title>Tasks done</mat-card-title>
+    <mat-list>
+      <mat-list-item *ngFor="let completed of completed; let i = index">
+        <button mat-icon-button>
+          <mat-icon mat-list-icon (click)="uncomplete(i)">undo</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon mat-list-icon color="warn" (click)="delete(i)">delete_forever</mat-icon>
+        </button>
+        <h4 mat-line>{{task.title| titlecase}}</h4>
+        <p mat-line> {{task.deadline | date}} </p>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+  <ng-template #noCompleted>
+    <mat-card>
+      <mat-card-title>Finished Tasks Go Here</mat-card-title>
+    </mat-card>
+  </ng-template>
+</div>
