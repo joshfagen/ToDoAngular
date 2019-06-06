@@ -9,17 +9,30 @@
 
 <div class="div-flex">
   <mat-card *ngIf="this.tasks[0]; else noToDo">
-    <mat-card-title>Tasks todo</mat-card-title>
+    <mat-card-title>Tasks</mat-card-title>
     <mat-list>
       <mat-list-item *ngFor="let task of tasks; let i = index">
+        <button
+          (click)="toggleEmerg(i)">
+          <mat-icon
+            *ngIf="task.urgent; else notEmergency"
+              class="orange600" title="URGENT!">grade</mat-icon>
+          <ng-template #notEmergency>
+            <mat-icon title="Click to make task urgent.">grade</mat-icon>
+          </ng-template>
+        </button>
         <button mat-icon-button>
           <mat-icon mat-list-icon color="accent" (click)="editDialog(i)">edit</mat-icon>
         </button>
         <button mat-icon-button>
           <mat-icon mat-list-icon color="primary" (click)="complete(i)">done_outline</mat-icon>
         </button>
+        <button mat-icon-button>
+          <mat-icon mat-list-icon color="warn" (click)="delete(i, false)">delete_forever</mat-icon>
+        </button>
         <h4 mat-line>{{task.title| titlecase}}</h4>
         <p mat-line> {{task.deadline | date}} </p>
+        {{task.details}}
       </mat-list-item>
     </mat-list>
   </mat-card>
@@ -36,7 +49,7 @@
           <mat-icon mat-list-icon (click)="uncomplete(i)">undo</mat-icon>
         </button>
         <button mat-icon-button>
-          <mat-icon mat-list-icon color="warn" (click)="delete(i)">delete_forever</mat-icon>
+          <mat-icon mat-list-icon color="warn" (click)="delete(i, 'true')">delete_forever</mat-icon>
         </button>
         <h4 mat-line>{{completed.title| titlecase}}</h4>
         <p mat-line> {{completed.deadline | date}} </p>

@@ -42,9 +42,21 @@ export class ToDoListComponent implements OnInit {
 
   // Function to delete task
   delete(i: number, completed) {
-    this.toDoServ.deleteTask(i, completed);
+    if(completed) {
+      this.toDoServ.deleteTask(i, completed);
+    } else {
+      this.toDoServ.deleteTask(i, false);
+    }
   }
 
+  // Function to toggle emergency property
+  toggleEmerg(i) {
+    if (this.tasks[i].urgent) {
+      this.tasks[i].urgent = false;
+    } else {
+      this.tasks[i].urgent = true;
+    }
+  }
   // Function to move a completed task back to to-do list
   uncomplete(i: number) {
     this.toDoServ.uncompleteTask(i);

@@ -1,3 +1,50 @@
-<p>
-  add-task works!
-</p>
+<div class="form">
+  <form (ngSubmit)="addTask()">
+    <h2>New Task</h2>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Task Title</mat-label>
+        <input matInput
+               placeholder="Name of Task"
+               [(ngModel)]="title"
+               name="title"
+               required>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Task Details</mat-label>
+        <textarea
+          matInput
+          placeholder="Enter Details"
+          name="details"
+        ></textarea>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <mat-label>Deadline</mat-label>
+        <input matInput
+               [matDatepicker]="date"
+               placeholder="Must be done by"
+               [(ngModel)]="deadline"
+               name="deadline"
+               required>
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="date"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #date></mat-datepicker>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-checkbox [(ngModel)]="emergency">Mark as Urgent?</mat-checkbox>
+    </p>
+    <button
+      mat-icon-button
+      color="primary"
+      type="submit">
+      <mat-icon>add</mat-icon>
+    </button>
+  </form>
+</div>

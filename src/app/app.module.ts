@@ -13,6 +13,7 @@ import {
   MatBottomSheetModule,
   MatButtonModule,
   MatCardModule,
+  MatCheckboxModule,
   MatListModule,
   MatToolbarModule,
   MatFormFieldModule,
@@ -40,6 +41,7 @@ import { EditTaskComponent } from './views/edit-task/edit-task.component';
     BrowserAnimationsModule,
     FormsModule,
     MatCardModule,
+    MatCheckboxModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -48,6 +50,7 @@ import { EditTaskComponent } from './views/edit-task/edit-task.component';
     MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AddTaskComponent, EditTaskComponent]
 })
 export class AppModule { }

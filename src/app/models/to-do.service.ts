@@ -18,7 +18,7 @@ export class ToDoService {
   getCompleted(): Observable<Task[]> {
     return of(this.completed);
   }
-  addTask(args: any[]): void {
+  addTask(args: any): void {
     this.tasks.push(new Task(args));
   }
   completeTask(i: number): void {
