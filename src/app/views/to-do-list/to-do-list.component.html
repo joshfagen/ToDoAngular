@@ -1,5 +1,11 @@
-<button id="add" mat-raised-button color="primary" (click)="addDialog()">Add todo</button>
+<div id="add">
 
+  <button id="dialog" mat-raised-button color="primary" (click)="addDialog()">Add via Dialog</button>
+  <button id="sheet"
+          mat-raised-button
+          color="warn"
+          (click)="addSheet()">Add via Sheet</button>
+</div>
 
 <div class="div-flex">
   <mat-card *ngIf="this.tasks[0]; else noToDo">
@@ -7,13 +13,13 @@
     <mat-list>
       <mat-list-item *ngFor="let task of tasks; let i = index">
         <button mat-icon-button>
-          <mat-icon mat-list-icon color="accent" (click)="openBottomSheetEdit(task)">edit</mat-icon>
+          <mat-icon mat-list-icon color="accent" (click)="editDialog(i)">edit</mat-icon>
         </button>
         <button mat-icon-button>
-          <mat-icon mat-list-icon color="primary" (click)="markDone(i, task)">done_outline</mat-icon>
+          <mat-icon mat-list-icon color="primary" (click)="complete(i)">done_outline</mat-icon>
         </button>
-        <h4 mat-line>{{task.task | titlecase}}</h4>
-        <p mat-line> {{task.dueDate | date}} </p>
+        <h4 mat-line>{{task.title| titlecase}}</h4>
+        <p mat-line> {{task.deadline | date}} </p>
       </mat-list-item>
     </mat-list>
   </mat-card>
@@ -32,8 +38,8 @@
         <button mat-icon-button>
           <mat-icon mat-list-icon color="warn" (click)="delete(i)">delete_forever</mat-icon>
         </button>
-        <h4 mat-line>{{task.title| titlecase}}</h4>
-        <p mat-line> {{task.deadline | date}} </p>
+        <h4 mat-line>{{completed.title| titlecase}}</h4>
+        <p mat-line> {{completed.deadline | date}} </p>
       </mat-list-item>
     </mat-list>
   </mat-card>

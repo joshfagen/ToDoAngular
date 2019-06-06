@@ -19,11 +19,16 @@ import {
   MatIconModule, MatInputModule, MatDatepickerModule, MatNativeDateModule
 } from '@angular/material';
 import { MatDialogModule } from '@angular/material/dialog';
+import {AddTaskComponent} from './views/add-task/add-task.component';
+import { EditTaskComponent } from './views/edit-task/edit-task.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToDoListComponent
+    ToDoListComponent,
+    AddTaskComponent,
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,
