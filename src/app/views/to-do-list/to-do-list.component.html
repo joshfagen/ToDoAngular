@@ -9,8 +9,8 @@
 <div class="div-flex">
   <mat-card *ngIf="this.tasks[0]; else noToDo">
     <mat-card-title>Tasks</mat-card-title>
-    <mat-list>
-      <mat-list-item *ngFor="let task of tasks; let i = index">
+    <mat-list *ngFor="let task of tasks; let i = index">
+      <mat-list-item>
         <button
           (click)="toggleEmerg(i)">
           <mat-icon
@@ -33,7 +33,64 @@
         <p mat-line class="date"> {{task.deadline | date: 'fullDate'}} </p>
         <p mat-line id="details">{{task.details}}</p>
       </mat-list-item>
+      <div id="{{i}}" style="display: none;">
+        <div class="form">
+          <form (ngSubmit)="changeTask(i)">
+            <h2>Edit Task</h2>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>Task Title</mat-label>
+                <input matInput
+                       placeholder="Name of Task"
+                       [(ngModel)]="task.title"
+                       name="title"
+                       required>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>Task Details</mat-label>
+                <textarea
+                  matInput
+                  placeholder="Enter Details"
+                  [(ngModel)]="task.details"
+                  name="details"
+                ></textarea>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field>
+                <mat-label>Deadline</mat-label>
+                <input matInput
+                       [matDatepicker]="date"
+                       placeholder="Must be done by"
+                       [(ngModel)]="task.deadline"
+                       name="deadline"
+                       [min]="today"
+                       required>
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="date"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #date></mat-datepicker>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-checkbox [(ngModel)]="task.urgent" name="urgent">Mark as Urgent?</mat-checkbox>
+            </p>
+            <button
+              mat-icon-button
+              color="primary"
+              type="submit"
+              size="large"
+              title="Finish Editing"
+            >
+              <mat-icon id="edit-icon">forward</mat-icon>
+            </button>
+          </form>
+        </div>
 
+      </div>
     </mat-list>
   </mat-card>
   <ng-template #noToDo>
@@ -52,10 +109,7 @@
           <mat-icon mat-list-icon color="warn" (click)="delete(i, 'true')">delete_forever</mat-icon>
         </button>
         <h4 mat-line>{{completed.title| titlecase}}</h4>
-        <p mat-line class="date"> Completed on: {{completed.dateCompleted | date: 'fullDate'}} </p>
-        <div id="{{i}}" style="display:none;">
-
-        </div>
+        <p mat-line class="date"> Completed on: {{completed.dateCompleted | date: 'fullDate'}}</p>
       </mat-list-item>
     </mat-list>
   </mat-card>

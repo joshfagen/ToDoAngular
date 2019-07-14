@@ -32,11 +32,16 @@ export class ToDoListComponent implements OnInit {
     this.toDoServ.completeTask(i);
   }
 
-  // Function to edit task
+  // Functions to edit task
   edit(i: number) {
-    document.getElementById[i].style.display = 'inline-block';
+    const index = '' + i;
+    document.getElementById(index).style.display = 'block';
   }
 
+  changeTask(i: number) {
+    const index = '' + i;
+    document.getElementById(index).style.display = 'none';
+  }
   // Function to delete task
   delete(i: number, completed) {
     if(completed) {
