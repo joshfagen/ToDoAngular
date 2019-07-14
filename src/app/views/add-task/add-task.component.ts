@@ -11,7 +11,8 @@ export class AddTaskComponent implements OnInit {
   title: string;
   details: string;
   deadline: Date;
-  emergency: boolean;
+  urgent: boolean;
+  today = new Date();
   constructor(
     private sheet: MatBottomSheetRef,
     private toDoServ: ToDoService
@@ -24,7 +25,7 @@ export class AddTaskComponent implements OnInit {
       title: this.title,
       details: this.details,
       deadline: this.deadline,
-      emergency: this.emergency
+      urgent: this.urgent
     };
     console.log(info);
     this.toDoServ.addTask(info);

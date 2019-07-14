@@ -17,6 +17,7 @@
         <textarea
           matInput
           placeholder="Enter Details"
+          [(ngModel)]="details"
           name="details"
         ></textarea>
       </mat-form-field>
@@ -29,6 +30,7 @@
                placeholder="Must be done by"
                [(ngModel)]="deadline"
                name="deadline"
+               [min]="today"
                required>
         <mat-datepicker-toggle
           matSuffix
@@ -38,7 +40,7 @@
       </mat-form-field>
     </p>
     <p>
-      <mat-checkbox [(ngModel)]="emergency">Mark as Urgent?</mat-checkbox>
+      <mat-checkbox [(ngModel)]="urgent" name="urgent">Mark as Urgent?</mat-checkbox>
     </p>
     <button
       mat-icon-button

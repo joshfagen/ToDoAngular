@@ -22,6 +22,7 @@ export class ToDoService {
     this.tasks.push(new Task(args));
   }
   completeTask(i: number): void {
+    this.tasks[i].dateCompleted = new Date();
     this.completed.push(this.tasks[i]);
     this.tasks.splice(i, 1);
   }

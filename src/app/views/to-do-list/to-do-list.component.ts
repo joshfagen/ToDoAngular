@@ -4,7 +4,6 @@ import {MatBottomSheet} from '@angular/material';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {Task} from '../../models/Task';
 import {AddTaskComponent} from '../add-task/add-task.component';
-import {EditTaskComponent} from '../edit-task/edit-task.component';
 
 @Component({
   selector: 'app-to-do-list',
@@ -23,18 +22,11 @@ export class ToDoListComponent implements OnInit {
     this.toDoServ.getCompleted().subscribe(res => this.completed = res);
   }
 
-  addDialog() {
 
-  }
   addSheet(): void {
   this.sheet.open(AddTaskComponent);
   }
-  editDialog(i: number) {
 
-  }
-  editSheet() {
-  this.sheet.open(EditTaskComponent);
-  }
   // Function to move task to complete
   complete(i: number) {
     this.toDoServ.completeTask(i);

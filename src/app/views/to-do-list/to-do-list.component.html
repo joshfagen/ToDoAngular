@@ -1,10 +1,9 @@
 <div id="add">
 
-  <button id="dialog" mat-raised-button color="primary" (click)="addDialog()">Add via Dialog</button>
   <button id="sheet"
           mat-raised-button
           color="warn"
-          (click)="addSheet()">Add via Sheet</button>
+          (click)="addSheet()">Add New Task</button>
 </div>
 
 <div class="div-flex">
@@ -22,7 +21,7 @@
           </ng-template>
         </button>
         <button mat-icon-button>
-          <mat-icon mat-list-icon color="accent" (click)="editDialog(i)">edit</mat-icon>
+          <mat-icon mat-list-icon color="accent" (click)="edit(i)">edit</mat-icon>
         </button>
         <button mat-icon-button>
           <mat-icon mat-list-icon color="primary" (click)="complete(i)">done_outline</mat-icon>
@@ -31,9 +30,10 @@
           <mat-icon mat-list-icon color="warn" (click)="delete(i, false)">delete_forever</mat-icon>
         </button>
         <h4 mat-line>{{task.title| titlecase}}</h4>
-        <p mat-line> {{task.deadline | date}} </p>
-        {{task.details}}
+        <p mat-line> {{task.deadline | date: 'fullDate'}} </p>
+        <p mat-line id="details">{{task.details}}</p>
       </mat-list-item>
+
     </mat-list>
   </mat-card>
   <ng-template #noToDo>
@@ -52,7 +52,7 @@
           <mat-icon mat-list-icon color="warn" (click)="delete(i, 'true')">delete_forever</mat-icon>
         </button>
         <h4 mat-line>{{completed.title| titlecase}}</h4>
-        <p mat-line> {{completed.deadline | date}} </p>
+        <p mat-line> Completed on: {{completed.dateCompleted | date: 'fullDate'}} </p>
       </mat-list-item>
     </mat-list>
   </mat-card>

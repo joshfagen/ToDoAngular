@@ -21,15 +21,13 @@ import {
 } from '@angular/material';
 import { MatDialogModule } from '@angular/material/dialog';
 import {AddTaskComponent} from './views/add-task/add-task.component';
-import { EditTaskComponent } from './views/edit-task/edit-task.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ToDoListComponent,
-    AddTaskComponent,
-    EditTaskComponent
+    AddTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +49,6 @@ import { EditTaskComponent } from './views/edit-task/edit-task.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [AddTaskComponent, EditTaskComponent]
+  entryComponents: [AddTaskComponent]
 })
 export class AppModule { }
