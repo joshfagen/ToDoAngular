@@ -29,6 +29,7 @@ export class AddTaskComponent implements OnInit {
     };
     console.log(info);
     this.toDoServ.addTask(info);
+    this.sheet.dismiss();
   }
 
 }

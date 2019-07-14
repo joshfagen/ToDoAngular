@@ -30,7 +30,7 @@
           <mat-icon mat-list-icon color="warn" (click)="delete(i, false)">delete_forever</mat-icon>
         </button>
         <h4 mat-line>{{task.title| titlecase}}</h4>
-        <p mat-line> {{task.deadline | date: 'fullDate'}} </p>
+        <p mat-line class="date"> {{task.deadline | date: 'fullDate'}} </p>
         <p mat-line id="details">{{task.details}}</p>
       </mat-list-item>
 
@@ -52,7 +52,10 @@
           <mat-icon mat-list-icon color="warn" (click)="delete(i, 'true')">delete_forever</mat-icon>
         </button>
         <h4 mat-line>{{completed.title| titlecase}}</h4>
-        <p mat-line> Completed on: {{completed.dateCompleted | date: 'fullDate'}} </p>
+        <p mat-line class="date"> Completed on: {{completed.dateCompleted | date: 'fullDate'}} </p>
+        <div id="{{i}}" style="display:none;">
+
+        </div>
       </mat-list-item>
     </mat-list>
   </mat-card>
